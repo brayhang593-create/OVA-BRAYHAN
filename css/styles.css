@@ -283,3 +283,13 @@ button.choice-bad:disabled { border-color: #a25138; }
 
 .video-intro, .video-transcript { max-width: 745px; }
 .video-transcript p { margin: .65rem 0; }
+
+.doc-preview { display: flex; align-items: center; flex-wrap: wrap; gap: 1.4rem; border-block: 1px solid var(--line); padding-block: 1.5rem; margin-top: 2rem; }
+.doc-preview > div { flex: 1 1 18rem; min-width: 0; }
+.doc-thumb img { display: block; width: 120px; height: auto; border: 1px solid var(--line); }
+#visor-ficha { inset: 0; margin: 0; width: 100%; height: 100%; max-width: none; max-height: none; padding: 0; border: 0; background: #d8d5cc; color: var(--ink); }
+#visor-ficha[open] { display: grid; grid-template-rows: auto minmax(0,1fr); }
+body:has(#visor-ficha[open]) { overflow: hidden; }
+.doc-toolbar { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: .4rem .7rem; padding: .5rem; background: var(--paper); }
+.doc-sheet { overflow: auto; padding: .7rem; }
+.doc-sheet img { display: block; width: min(100%, 890px); height: auto; margin: 0 auto; }
