@@ -1,26 +1,26 @@
 # Laboratorio del Caos
 
-Objeto virtual de aprendizaje sobre **Caos en los sistemas** para Teoría General de Sistemas, 2026-2.
+OVA de Teoría General de Sistemas sobre **Caos en los sistemas**. Proyecto 7 del período 2026-2.
 
-**Autor:** Brayhan Alejandro Gómez Vega · Ingeniería de Sistemas, segundo semestre · Universidad Simón Bolívar, sede Cúcuta.
+**Autor:** BRAYHAN ALEJANDRO GOMEZ VEGA · Ingeniería de Sistemas, segundo semestre · Universidad Simón Bolívar, sede Cúcuta.
 
-## Cómo abrirlo
+## Abrir el proyecto
 
-Abre `index.html` en un navegador moderno. HTML, CSS, JavaScript y la imagen del mapa logístico se sirven desde el proyecto. El recurso audiovisual externo requiere conexión.
+Abre `index.html` en un navegador moderno para recorrer el OVA. Los dos videos del laboratorio están incluidos en el proyecto. El enlace complementario a YouTube requiere conexión.
 
 ## Estructura
 
-- `index.html` contiene teoría, actividades, evaluación y créditos.
-- `css/` contiene los estilos base y ajustes para pantallas pequeñas.
-- `js/main.js` controla el menú y comparte el cálculo y la gráfica del mapa logístico.
-- `js/simulador.js`, `js/juegos.js` y `js/quiz.js` gestionan cada actividad.
-- `assets/imagenes/` contiene el diagrama de bifurcación generado mediante iteraciones del mapa logístico.
-- `docs/ficha-tecnica.pdf` contiene la ficha de entrega.
+- `index.html` — contexto, importancia y recorrido.
+- `teoria.html` — conceptos, casos aplicados, citas académicas y videos.
+- `simulador.html` — mapa logístico y ejercicios con retroalimentación.
+- `juegos.html` — investigación de trayectorias y memoria de conceptos.
+- `quiz.html` — evaluación de cinco preguntas.
+- `creditos.html` — autoría, fuentes, ficha y declaración de IA.
+- `css/` — estilos comunes y ajustes para pantallas pequeñas.
+- `js/` — menú, cálculo del mapa logístico y módulos de cada actividad.
+- `assets/imagenes/` — diagrama, retrato y logo.
+- `assets/videos/` — animaciones didácticas en MP4.
+- `tools/render_videos.py` — fuente para reproducir los videos con Python, Pillow y FFmpeg.
+- `docs/ficha-tecnica.pdf` — ficha técnica académica.
 
-## Prueba rápida
-
-1. En el simulador, selecciona «Estable», «Periódico» y «Caótico». Compara el aspecto de las curvas y los valores de la tabla.
-2. Completa los dos juegos y el quiz. Comprueba las explicaciones y reinicia el quiz.
-3. Abre el menú en un ancho de pantalla móvil y revisa los enlaces de créditos.
-
-Para publicarlo en un alojamiento estático, usa la raíz del repositorio como directorio del sitio. Las referencias y la declaración de uso de IA están en Créditos.
+Para publicarlo en un alojamiento estático, selecciona la raíz del repositorio como directorio del sitio.

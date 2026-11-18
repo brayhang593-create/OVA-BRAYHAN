@@ -52,3 +52,21 @@
     });
   });
 })();
+
+(() => {
+  const form = document.querySelector('#calc-form');
+  const feedback = document.querySelector('#calc-feedback');
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const raw = form.elements.answer.value.trim();
+    if (!/^[+-]?(?:\d+(?:[.,]\d+)?|[.,]\d+)$/.test(raw)) {
+      feedback.textContent = 'Escribe un número decimal. Puedes usar coma o punto.';
+      return;
+    }
+    const answer = Number(raw.replace(',', '.'));
+    const expected = logistic(3, 0.2, 1)[1];
+    feedback.textContent = Math.abs(answer - expected) < 0.000001
+      ? 'Correcto: 3 × 0,2 × 0,8 = 0,48.'
+      : 'Revisa el último factor. Si x₀ es 0,2, entonces 1 − x₀ es 0,8.';
+  });
+})();

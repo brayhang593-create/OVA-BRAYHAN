@@ -35,7 +35,7 @@ function logistic(rate, initial, steps) {
   return values;
 }
 
-function drawTrajectory(canvas, series, startStep = 0) {
+function drawTrajectory(canvas, series, startStep = 0, highlight = null) {
   const ratio = window.devicePixelRatio || 1;
   const { width, height } = canvas.getBoundingClientRect();
   canvas.width = Math.round(width * ratio);
@@ -78,4 +78,11 @@ function drawTrajectory(canvas, series, startStep = 0) {
     values.slice(1).forEach((value, step) => ctx.lineTo(x(step + 1), y(value)));
     ctx.stroke();
   });
+
+  if (highlight !== null) {
+    ctx.beginPath();
+    ctx.fillStyle = '#9a482e';
+    ctx.arc(x(highlight), y(series[0][highlight]), 5, 0, Math.PI * 2);
+    ctx.fill();
+  }
 }

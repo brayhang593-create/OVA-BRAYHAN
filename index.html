@@ -8,19 +8,17 @@
 <link rel="stylesheet" href="css/styles.css">
 <link rel="stylesheet" href="css/responsive.css">
 <script defer src="js/main.js"></script>
-<script defer src="js/simulador.js"></script>
-<script defer src="js/juegos.js"></script>
-<script defer src="js/quiz.js"></script>
 </head>
-<body>
+<body id="arriba">
 <a class="skip" href="#contenido">Saltar al contenido</a>
 <header class="site-header">
   <div class="shell header-inner">
-    <a class="brand" href="#inicio">Laboratorio<span> del Caos</span></a>
+    <div class="identity">
+      <img class="header-logo" src="assets/imagenes/logo-unisimon.png" alt="Universidad Simón Bolívar" width="62" height="40">
+      <a class="brand" href="index.html">Laboratorio<span> del Caos</span></a>
+    </div>
     <button type="button" id="menu" class="menu" aria-expanded="false" aria-controls="nav">Menú</button>
-    <nav id="nav" aria-label="Navegación principal">
-      <a href="#teoria">Teoría</a><a href="#simulador">Simulador</a><a href="#juegos">Juegos</a><a href="#quiz">Evaluación</a><a href="#creditos">Créditos</a>
-    </nav>
+    <nav id="nav" aria-label="Navegación principal"><a href="index.html" aria-current="page">Inicio</a><a href="teoria.html">Teoría</a><a href="simulador.html">Simulador</a><a href="juegos.html">Juegos</a><a href="quiz.html">Evaluación</a><a href="creditos.html">Créditos</a></nav>
   </div>
 </header>
 <main id="contenido">
@@ -29,143 +27,34 @@
       <p class="label">Teoría General de Sistemas</p>
       <h1>Caos en los <em>sistemas</em></h1>
       <p class="intro">¿Qué pasa cuando aplicamos la misma regla a dos estados iniciales casi idénticos? Explora cuándo sus trayectorias se acercan, se repiten o se separan.</p>
-      <a class="button primary" href="#simulador">Abrir el simulador <span aria-hidden="true">↘</span></a>
+      <a class="button primary" href="teoria.html">Empezar por la teoría <span aria-hidden="true">↘</span></a>
     </div>
     <figure class="hero-figure">
       <img src="assets/imagenes/bifurcacion.png" width="1080" height="680" alt="Diagrama del mapa logístico. Una rama se divide en dos, luego en cuatro y después aparecen bandas de puntos.">
       <figcaption>Mapa logístico · Valores de x tras el período transitorio, para cada r.</figcaption>
     </figure>
   </section>
-
-  <section id="teoria" class="shell section">
-    <p class="label">Fundamentos</p>
-    <h2>De la regla a la trayectoria</h2>
+  <section class="section shell" aria-labelledby="importancia">
     <div class="theory-grid">
       <div>
-        <h3>Sistemas dinámicos y determinismo</h3>
-        <p>El estado de un sistema dinámico cambia con el tiempo. En un modelo discreto se observa a intervalos, como una generación tras otra. En un modelo determinista, el estado actual y la regla fijan el siguiente estado (Herrera Díaz &amp; Conde, 2001).</p>
-        <h3>Sensibilidad a las condiciones iniciales</h3>
-        <p>En un régimen caótico, dos estados iniciales muy cercanos pueden generar trayectorias que se separan con el tiempo. Así, una pequeña imprecisión al medir el estado inicial puede limitar la predicción (Campos, 2002). Una trayectoria irregular puede surgir de la dinámica interna del sistema (Lombardi, 2001).</p>
-        <h3>Relación con la TGS</h3>
-        <p>El mapa logístico permite estudiar cómo cambia un sistema con cada iteración. En sistemas abiertos, como las organizaciones, también interesa cómo influyen las interacciones internas y el entorno (Rodríguez Devis, 2002). Para identificar caos en un caso concreto hay que examinar su dinámica.</p>
+        <h2 id="importancia">Por qué estudiar el caos</h2>
+        <p>En Ingeniería de Sistemas, conocer las reglas de un modelo ayuda a simularlo. Para saber cuánto confiar en sus predicciones, también importa cuánto desconocemos sobre el estado inicial. Comparar simulaciones permite ver cuándo una diferencia pequeña tiene consecuencias importantes <a class="citation" href="creditos.html#campos-2002">(Campos, 2002)</a>.</p>
+        <p>Al terminar podrás explicar esa sensibilidad, comparar tres comportamientos del mapa logístico y relacionar lo observado con sistemas reales.</p>
       </div>
-      <aside class="notebook">
-        <h3>El mapa logístico</h3>
-        <p class="formula" aria-label="x sub n más uno es igual a r por x sub n por uno menos x sub n">x<sub>n+1</sub> = r · x<sub>n</sub> · (1 − x<sub>n</sub>)</p>
-        <p><strong>x<sub>n</sub></strong> representa un estado normalizado entre 0 y 1. <strong>r</strong> es el parámetro que modifica la dinámica. Al iterar, la salida de un paso se convierte en la entrada del siguiente (Campos Romero, 1996).</p>
-        <p>Si r = 3 y x<sub>0</sub> = 0,2, el primer paso da 3 × 0,2 × 0,8 = <strong>0,48</strong>.</p>
-      </aside>
-    </div>
-    <div class="case">
-      <div><h3>Caso aplicado · Mezcla de fluidos</h3>
-      <p>En ingeniería química, el flujo puede deformar y separar trayectorias vecinas dentro de un fluido. Esa dinámica ayuda a entender cómo se distribuye una sustancia durante la mezcla. Herrera Díaz y Conde (2001) revisan la relación entre el caos, el flujo y la mezcla.</p></div>
-      <div><h3>Video · El mapa logístico</h3>
-      <p>Veritasium en español presenta la ecuación y muestra cómo cambia el comportamiento al variar r.</p>
-      <iframe class="video" src="https://www.youtube-nocookie.com/embed/EOvLhZPevm0" loading="lazy" title="Esta ecuación cambiará tu modo de ver el mundo, Veritasium en español" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      <a href="https://www.youtube.com/watch?v=EOvLhZPevm0">Ver en YouTube ↗</a></div>
-    </div>
-  </section>
-
-  <section id="simulador" class="section tinted">
-    <div class="shell">
-      <p class="label">Práctica</p>
-      <h2>Dos trayectorias, una regla</h2>
-      <p>Cambia r y los estados iniciales. El eje horizontal muestra el paso n y el vertical, el estado x.</p>
-      <div class="sim-layout">
-        <form id="sim-form" class="controls">
-          <div class="presets" aria-label="Ejemplos de parámetros">
-            <button type="button" data-r="2.8">Estable</button>
-            <button type="button" data-r="3.2">Periódico</button>
-            <button type="button" data-r="3.9">Caótico</button>
-          </div>
-          <label>Parámetro r <input name="rate" type="number" min="0" max="4" step="any" value="3.9" required></label>
-          <label>Estado inicial A <input name="startA" type="number" min="0" max="1" step="any" value="0.25" required></label>
-          <label>Estado inicial B <input name="startB" type="number" min="0" max="1" step="any" value="0.2501" required></label>
-          <label>Iteraciones <input name="steps" type="number" min="10" max="160" value="45" required></label>
-          <button class="primary" type="submit">Simular</button>
-        </form>
-        <figure class="chart-box">
-          <canvas id="sim-chart" role="img" aria-label="Gráfica de dos trayectorias del mapa logístico" aria-describedby="sim-summary"></canvas>
-          <figcaption><span class="legend a">A · línea continua</span><span class="legend b">B · línea discontinua</span></figcaption>
-          <p id="sim-summary" class="feedback" role="status"></p>
-          <details><summary>Ver valores de ambas trayectorias</summary>
-            <div class="table-wrap"><table><thead><tr><th scope="col">Paso</th><th scope="col">A</th><th scope="col">B</th></tr></thead><tbody id="sim-data"></tbody></table></div>
-          </details>
-        </figure>
-      </div>
-      <div class="exercise">
-        <h3>Comprueba tu predicción</h3>
-        <p>Con el ejemplo «Caótico», ¿cuál de estas observaciones es esperable después de varias iteraciones?</p>
-        <div class="choices">
-          <button type="button" data-exercise="yes">Las trayectorias pueden separarse.</button>
-          <button type="button" data-exercise="no">La separación inicial se mantiene fija.</button>
-        </div>
-        <p id="exercise-feedback" class="feedback" role="status"></p>
+      <div>
+        <h3>Recorrido</h3>
+        <ol class="path">
+          <li><a href="teoria.html">Teoría, casos y videos</a></li>
+          <li><a href="simulador.html">Simulador y ejercicios</a></li>
+          <li><a href="juegos.html">Juegos interactivos</a></li>
+          <li><a href="quiz.html">Evaluación</a></li>
+        </ol>
       </div>
     </div>
   </section>
 
-  <section id="juegos" class="section shell">
-    <p class="label">Juegos</p>
-    <h2>Lee el comportamiento</h2>
-    <div class="activity-grid">
-      <article class="activity">
-        <h3>Detective de trayectorias</h3>
-        <p>Observa los valores después de las primeras iteraciones. ¿Qué patrón sigue la trayectoria?</p>
-        <p id="trajectory-count" class="label" aria-live="polite"></p>
-        <canvas id="game-chart" role="img" aria-label="Trayectoria del reto" aria-describedby="trajectory-data"></canvas>
-        <details><summary>Ver valores del reto</summary><p id="trajectory-data"></p></details>
-        <div class="choices" id="classify">
-          <button type="button" data-kind="estable">Estable</button>
-          <button type="button" data-kind="periódico">Periódico</button>
-          <button type="button" data-kind="caótico">Caótico</button>
-        </div>
-        <p id="trajectory-feedback" class="feedback" role="status"></p>
-        <button type="button" id="trajectory-next">Siguiente trayectoria</button>
-      </article>
-      <article class="activity">
-        <h3>Conceptos en pareja</h3>
-        <p>Asocia cada descripción con el concepto que le corresponde.</p>
-        <form id="match-form"><div id="matches"></div>
-        <div class="choices">
-          <button class="primary" type="submit">Revisar parejas</button>
-          <button type="reset">Reiniciar</button>
-        </div></form>
-        <p id="match-feedback" class="feedback" role="status"></p>
-      </article>
-    </div>
-  </section>
-
-  <section id="quiz" class="section tinted">
-    <div class="shell quiz-layout">
-      <div><p class="label">Evaluación</p><h2>Comprueba lo aprendido</h2>
-      <p>Responde cinco preguntas y revisa la explicación de cada una.</p></div>
-      <form id="quiz-form">
-        <div id="quiz-questions"></div>
-        <div class="choices"><button class="primary" type="submit">Calificar</button><button type="reset">Reiniciar</button></div>
-        <p id="quiz-result" class="feedback" role="status"></p>
-      </form>
-    </div>
-  </section>
-
-  <section id="creditos" class="section shell credits">
-    <div><h2>Créditos</h2>
-      <p><strong>Brayhan Alejandro Gómez Vega</strong><br>Ingeniería de Sistemas · Segundo semestre<br>Universidad Simón Bolívar · sede Cúcuta<br>Teoría General de Sistemas · 2026-2</p>
-      <p>Gráficos calculados a partir del mapa logístico. Se usó OpenAI Codex como apoyo para redactar y programar el OVA.</p>
-      <a href="docs/ficha-tecnica.pdf">Ficha técnica del proyecto (PDF)</a>
-    </div>
-    <div><h3>Referencias</h3>
-      <ol class="references">
-        <li>Campos, D. (2002). Determinismo, caos e impredictibilidad. <cite>Revista de la Academia Colombiana de Ciencias Exactas, Físicas y Naturales, 26</cite>(98), 85–103. <a href="https://doi.org/10.18257/raccefyn.26(98).2002.2755">DOI</a></li>
-        <li>Campos Romero, D. (1996). Modelo logístico: Un paradigma en la teoría del caos. <cite>Revista de la Academia Colombiana de Ciencias Exactas, Físicas y Naturales, 20</cite>(78), 503–518. <a href="https://doi.org/10.18257/raccefyn.20(78).1996.3043">DOI</a></li>
-        <li>Herrera Díaz, L. F., &amp; Conde, A. (2001). Caos, fluidos y flujos. <cite>Ingeniería e Investigación</cite>, (48), 29–39. <a href="https://doi.org/10.15446/ing.investig.n48.21355">DOI</a></li>
-        <li>Lombardi, O. (2001). La teoría del caos y sus problemas epistemológicos. <cite>Revista de Filosofía, 57</cite>, 91–109. <a href="https://doi.org/10.5354/0718-4360.2001.44055">DOI</a></li>
-        <li>Rodríguez Devis, J. M. (2002). Las organizaciones complejas. <cite>Ingeniería e Investigación</cite>, (50), 90–103. <a href="https://doi.org/10.15446/ing.investig.n50.21428">DOI</a></li>
-      </ol>
-    </div>
-  </section>
 </main>
-<footer class="shell footer"><span>Laboratorio del Caos</span><a href="#inicio">Volver arriba ↑</a></footer>
-<noscript>Activa JavaScript para usar el simulador, los juegos y la evaluación.</noscript>
+<footer class="shell footer"><a href="creditos.html">Créditos del OVA</a><a href="#arriba">Volver arriba ↑</a></footer>
+<noscript>Activa JavaScript para usar las actividades interactivas.</noscript>
 </body>
 </html>

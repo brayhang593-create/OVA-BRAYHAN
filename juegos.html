@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="OVA de Teoría General de Sistemas sobre el caos determinista y el mapa logístico.">
+<title>Juegos · Laboratorio del Caos</title>
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/responsive.css">
+<script defer src="js/main.js"></script>
+<script defer src="js/juegos.js"></script>
+</head>
+<body id="arriba">
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<header class="site-header">
+  <div class="shell header-inner">
+    <div class="identity">
+      <img class="header-logo" src="assets/imagenes/logo-unisimon.png" alt="Universidad Simón Bolívar" width="62" height="40">
+      <a class="brand" href="index.html">Laboratorio<span> del Caos</span></a>
+    </div>
+    <button type="button" id="menu" class="menu" aria-expanded="false" aria-controls="nav">Menú</button>
+    <nav id="nav" aria-label="Navegación principal"><a href="index.html">Inicio</a><a href="teoria.html">Teoría</a><a href="simulador.html">Simulador</a><a href="juegos.html" aria-current="page">Juegos</a><a href="quiz.html">Evaluación</a><a href="creditos.html">Créditos</a></nav>
+  </div>
+</header>
+<main id="contenido">
+  <section class="section shell page-section">
+    <p class="label">Juegos</p>
+    <h1>Lee el comportamiento</h1>
+    <div class="game-stack">
+      <article class="activity" id="detective">
+        <div class="game-heading">
+          <h2>Detective de trayectorias</h2>
+          <p id="trajectory-count" class="label" aria-live="polite"></p>
+        </div>
+        <p>Reproduce la muestra o revela puntos a tu ritmo. Inspecciona un paso con el deslizador y decide qué patrón observas. Tienes dos intentos por ronda.</p>
+        <div class="detective-grid">
+          <div class="game-graph">
+            <canvas id="game-chart" role="img" aria-label="Trayectoria del reto" aria-describedby="trajectory-data"></canvas>
+            <details><summary>Ver valores de los puntos revelados</summary><p id="trajectory-data"></p></details>
+          </div>
+          <div class="evidence">
+            <button type="button" id="trajectory-play" class="primary">Reproducir muestra</button>
+            <button type="button" id="trajectory-reveal">Revelar 6 puntos</button>
+            <label for="trajectory-point">Inspeccionar un paso</label>
+            <input id="trajectory-point" type="range" min="50" max="56" step="1" value="56">
+            <output id="trajectory-reading" for="trajectory-point"></output>
+          </div>
+        </div>
+        <div class="game-play">
+          <div class="choices" id="classify">
+          <button type="button" data-kind="estable">Estable</button>
+          <button type="button" data-kind="periódico">Periódico</button>
+          <button type="button" data-kind="caótico">Caótico</button>
+        </div>
+        <p id="trajectory-feedback" class="feedback" role="status"></p>
+          <div><button type="button" id="trajectory-next">Siguiente trayectoria</button></div>
+        </div>
+      </article>
+
+      <article class="activity" id="memoria">
+        <div class="game-heading">
+          <h2>Memoria de conceptos</h2>
+          <p id="memory-stats" class="label" aria-live="polite"></p>
+        </div>
+        <p>Empareja cada concepto con su definición. Si dos cartas no coinciden, puedes leerlas antes de cubrirlas.</p>
+        <div id="memory-board" class="memory-board" aria-label="Tablero de memoria"></div>
+        <p id="memory-feedback" class="feedback" role="status"></p>
+        <div class="game-actions">
+          <span id="memory-actions" hidden><button type="button" id="memory-continue">Cubrir cartas</button></span>
+          <button type="button" id="memory-reset">Mezclar y reiniciar</button>
+        </div>
+      </article>
+    </div>
+  </section>
+<div class="shell next-page"><a class="button" href="quiz.html">Continuar a Evaluación <span aria-hidden="true">→</span></a></div>
+</main>
+<footer class="shell footer"><a href="creditos.html">Créditos del OVA</a><a href="#arriba">Volver arriba ↑</a></footer>
+<noscript>Activa JavaScript para usar las actividades interactivas.</noscript>
+</body>
+</html>
