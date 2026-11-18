@@ -38,6 +38,22 @@
         <img class="credits-logo" src="assets/imagenes/logo-unisimon.png" alt="Logo de la Universidad Simón Bolívar" width="104">
       </div>
     </article>
+    <section class="credit-video" id="video-narrado" aria-labelledby="credit-video-title">
+      <h2 id="credit-video-title">Caos en los sistemas</h2>
+      <p class="video-intro">Video narrado en español. Dos estados iniciales casi iguales muestran cómo el caos limita la capacidad de predecir un sistema.</p>
+      <video class="video" controls playsinline preload="metadata" aria-labelledby="credit-video-title" poster="assets/videos/caos-en-los-sistemas-narrado.png">
+        <source src="assets/videos/caos-en-los-sistemas-narrado.mp4" type="video/mp4">
+      </video>
+      <p class="video-fallback"><a href="assets/videos/caos-en-los-sistemas-narrado.mp4">Abrir MP4</a> · <a href="simulador.html">Probar el simulador</a></p>
+      <details class="video-transcript">
+        <summary>Leer la transcripción</summary>
+          <p>En un sistema determinista, el estado actual y la regla determinan el estado siguiente. Aun así, el futuro puede ser difícil de predecir si conocemos el estado inicial con poca precisión.</p>
+          <p>Probemos el mapa logístico. Las dos curvas usan el mismo parámetro, erre igual a tres coma nueve. Los estados iniciales difieren en una diezmilésima. Al principio las curvas casi se superponen. Después se separan.</p>
+          <p>Si cambiamos erre a tres coma dos, la trayectoria termina alternando entre dos valores. Con erre igual a tres coma nueve aparece una evolución irregular. La regla sigue siendo determinista.</p>
+          <p>En Teoría General de Sistemas, esto ayuda a entender los límites de una predicción. Cada estado se convierte en la entrada del paso siguiente. El caos determinista también puede observarse en un circuito real, como el de Chua. En el simulador puedes comparar ambos regímenes.</p>
+      </details>
+      <p class="video-note">Elaboración propia del OVA. La explicación se basa en <a href="#campos-2002">Campos (2002)</a> y <a href="#campos-1996">Campos Romero (1996)</a>.</p>
+    </section>
     <div class="credit-sources">
       <h2>Referencias</h2>
       <ol class="references">
@@ -51,8 +67,7 @@
     <div class="credit-notes">
       <div>
         <h3>Recursos audiovisuales</h3>
-        <p>Las dos animaciones del laboratorio se calcularon con el mapa logístico. El retrato y el logo institucional fueron aportados por el estudiante.</p>
-        <p>Veritasium en español. (s. f.). <cite>Esta ecuación cambiará tu modo de ver el mundo</cite> [Video]. YouTube. <a href="https://www.youtube.com/watch?v=EOvLhZPevm0">Ver el video</a></p>
+        <p>El video narrado y las dos animaciones se produjeron para este OVA. Las gráficas se calcularon con el mapa logístico. La narración se creó con síntesis de voz local en español. El retrato y el logo institucional fueron aportados por el estudiante.</p>
       </div>
       <div>
         <h3>Herramientas y ficha</h3>

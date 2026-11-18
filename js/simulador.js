@@ -5,6 +5,12 @@
   const summary = document.querySelector('#sim-summary');
   let series;
 
+  function formatGap(distance) {
+    return distance > 0 && distance < 0.00001
+      ? distance.toExponential(2).replace('.', ',')
+      : decimal.format(distance);
+  }
+
   function simulate() {
     const data = new FormData(form);
     const rate = Number(data.get('rate'));
@@ -16,9 +22,9 @@
 
     const distances = a.map((value, index) => Math.abs(value - b[index]));
     const peak = Math.max(...distances);
-    summary.textContent = 'Separación inicial: ' + decimal.format(distances[0]) +
-      ' · Mayor separación: ' + decimal.format(peak) +
-      ' (paso ' + distances.indexOf(peak) + ') · Separación final: ' + decimal.format(distances[steps]) + '.';
+    summary.textContent = 'Separación inicial: ' + formatGap(distances[0]) +
+      ' · Mayor separación: ' + formatGap(peak) +
+      ' (paso ' + distances.indexOf(peak) + ') · Separación final: ' + formatGap(distances[steps]) + '.';
 
     const rows = a.map((value, step) => {
       const row = document.createElement('tr');
@@ -46,9 +52,10 @@
 
   document.querySelectorAll('[data-exercise]').forEach((button) => {
     button.addEventListener('click', () => {
-      document.querySelector('#exercise-feedback').textContent = button.dataset.exercise === 'yes'
+      const correct = button.dataset.exercise === 'yes';
+      markFeedback(document.querySelector('#exercise-feedback'), correct ? 'good' : 'bad', correct
         ? 'Correcto. En este ejemplo las curvas empiezan muy juntas y luego se separan. Compara la separación inicial con la mayor separación.'
-        : 'Prueba el ejemplo «Caótico» y compara la separación inicial con la mayor separación. La distancia entre las trayectorias cambia.';
+        : 'Prueba el ejemplo «Caótico» y compara la separación inicial con la mayor separación. La distancia entre las trayectorias cambia.');
     });
   });
 })();
@@ -60,13 +67,14 @@
     event.preventDefault();
     const raw = form.elements.answer.value.trim();
     if (!/^[+-]?(?:\d+(?:[.,]\d+)?|[.,]\d+)$/.test(raw)) {
-      feedback.textContent = 'Escribe un número decimal. Puedes usar coma o punto.';
+      markFeedback(feedback, 'bad', 'Escribe un número decimal. Puedes usar coma o punto.');
       return;
     }
     const answer = Number(raw.replace(',', '.'));
     const expected = logistic(3, 0.2, 1)[1];
-    feedback.textContent = Math.abs(answer - expected) < 0.000001
-      ? 'Correcto: 3 × 0,2 × 0,8 = 0,48.'
-      : 'Revisa el último factor. Si x₀ es 0,2, entonces 1 − x₀ es 0,8.';
+    const correct = Math.abs(answer - expected) < 0.000001;
+    markFeedback(feedback, correct ? 'good' : 'bad', correct
+      ? 'Correcto. 3 × 0,2 × 0,8 = 0,48.'
+      : 'Revisa el último factor. Si x₀ es 0,2, entonces 1 − x₀ es 0,8.');
   });
 })();

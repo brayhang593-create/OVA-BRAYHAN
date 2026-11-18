@@ -32,7 +32,7 @@
           <h2>Detective de trayectorias</h2>
           <p id="trajectory-count" class="label" aria-live="polite"></p>
         </div>
-        <p>Reproduce la muestra o revela puntos a tu ritmo. Inspecciona un paso con el deslizador y decide qué patrón observas. Tienes dos intentos por ronda.</p>
+        <p>Reproduce la muestra o revela puntos a tu ritmo. Inspecciona un paso con el deslizador y decide qué patrón observas. Tienes dos intentos por ronda. Ganas si aciertas al menos dos de las tres rondas.</p>
         <div class="detective-grid">
           <div class="game-graph">
             <canvas id="game-chart" role="img" aria-label="Trayectoria del reto" aria-describedby="trajectory-data"></canvas>
@@ -52,9 +52,20 @@
           <button type="button" data-kind="periódico">Periódico</button>
           <button type="button" data-kind="caótico">Caótico</button>
         </div>
-        <p id="trajectory-feedback" class="feedback" role="status"></p>
-          <div><button type="button" id="trajectory-next">Siguiente trayectoria</button></div>
+        <p id="trajectory-feedback" class="feedback answer-feedback" role="status"></p>
+          <div id="trajectory-next-row"><button type="button" id="trajectory-next">Siguiente trayectoria</button></div>
         </div>
+        <section class="result-panel" id="trajectory-result" aria-labelledby="trajectory-result-title" hidden>
+          <span class="result-sparks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          <span class="result-mark" aria-hidden="true"></span>
+          <h3 id="trajectory-result-title" tabindex="-1"></h3>
+          <p class="result-detail"></p>
+          <div class="result-actions">
+            <button class="primary" id="trajectory-replay" type="button">Jugar de nuevo</button>
+
+            <a class="button" href="index.html">Salir a inicio</a>
+          </div>
+        </section>
       </article>
 
       <article class="activity" id="memoria">
@@ -64,11 +75,22 @@
         </div>
         <p>Empareja cada concepto con su definición. Si dos cartas no coinciden, puedes leerlas antes de cubrirlas.</p>
         <div id="memory-board" class="memory-board" aria-label="Tablero de memoria"></div>
-        <p id="memory-feedback" class="feedback" role="status"></p>
-        <div class="game-actions">
+        <p id="memory-feedback" class="feedback answer-feedback" role="status"></p>
+        <div class="game-actions" id="memory-controls">
           <span id="memory-actions" hidden><button type="button" id="memory-continue">Cubrir cartas</button></span>
           <button type="button" id="memory-reset">Mezclar y reiniciar</button>
         </div>
+        <section class="result-panel" id="memory-result" aria-labelledby="memory-result-title" hidden>
+          <span class="result-sparks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          <span class="result-mark" aria-hidden="true"></span>
+          <h3 id="memory-result-title" tabindex="-1"></h3>
+          <p class="result-detail"></p>
+          <div class="result-actions">
+            <button class="primary" id="memory-replay" type="button">Mezclar y jugar de nuevo</button>
+
+            <a class="button" href="index.html">Salir a inicio</a>
+          </div>
+        </section>
       </article>
     </div>
   </section>

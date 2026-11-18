@@ -6,7 +6,7 @@ OVA de Teoría General de Sistemas sobre **Caos en los sistemas**. Proyecto 7 de
 
 ## Abrir el proyecto
 
-Abre `index.html` en un navegador moderno para recorrer el OVA. Los dos videos del laboratorio están incluidos en el proyecto. El enlace complementario a YouTube requiere conexión.
+Abre `index.html` en un navegador moderno para recorrer el OVA. Los videos están incluidos en el proyecto. Créditos contiene un video narrado en español con transcripción.
 
 ## Estructura
 
@@ -19,7 +19,7 @@ Abre `index.html` en un navegador moderno para recorrer el OVA. Los dos videos d
 - `css/` — estilos comunes y ajustes para pantallas pequeñas.
 - `js/` — menú, cálculo del mapa logístico y módulos de cada actividad.
 - `assets/imagenes/` — diagrama, retrato y logo.
-- `assets/videos/` — animaciones didácticas en MP4.
+- `assets/videos/` — video narrado y animaciones didácticas en MP4.
 - `tools/render_videos.py` — fuente para reproducir los videos con Python, Pillow y FFmpeg.
 - `docs/ficha-tecnica.pdf` — ficha técnica académica.
 

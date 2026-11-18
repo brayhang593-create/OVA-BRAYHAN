@@ -35,9 +35,9 @@
             <button type="button" data-r="3.2">Periódico</button>
             <button type="button" data-r="3.9">Caótico</button>
           </div>
-          <label>Parámetro r <input name="rate" type="number" min="0" max="4" step="any" value="3.9" required></label>
-          <label>Estado inicial A <input name="startA" type="number" min="0" max="1" step="any" value="0.25" required></label>
-          <label>Estado inicial B <input name="startB" type="number" min="0" max="1" step="any" value="0.2501" required></label>
+          <label>Parámetro r <input name="rate" type="number" inputmode="decimal" min="0" max="4" step="any" value="3.9" required></label>
+          <label>Estado inicial A <input name="startA" type="number" inputmode="decimal" min="0" max="1" step="any" value="0.25" required></label>
+          <label>Estado inicial B <input name="startB" type="number" inputmode="decimal" min="0" max="1" step="any" value="0.2501" required></label>
           <label>Iteraciones <input name="steps" type="number" min="10" max="160" value="45" required></label>
           <button class="primary" type="submit">Simular</button>
         </form>
@@ -57,7 +57,7 @@
           <button type="button" data-exercise="yes">Las trayectorias pueden separarse.</button>
           <button type="button" data-exercise="no">La separación inicial se mantiene fija.</button>
         </div>
-        <p id="exercise-feedback" class="feedback" role="status"></p>
+        <p id="exercise-feedback" class="feedback answer-feedback" role="status"></p>
       </div>
       <div class="exercise">
         <h3>Calcula una iteración</h3>
@@ -66,7 +66,7 @@
           <label>Resultado x₁ <input name="answer" type="text" inputmode="decimal" required placeholder="0,00"></label>
           <button type="submit">Comprobar cálculo</button>
         </form>
-        <p id="calc-feedback" class="feedback" role="status"></p>
+        <p id="calc-feedback" class="feedback answer-feedback" role="status"></p>
       </div>
     </div>
   </section>

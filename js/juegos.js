@@ -9,6 +9,9 @@
   const data = document.querySelector('#trajectory-data');
   const feedback = document.querySelector('#trajectory-feedback');
   const next = document.querySelector('#trajectory-next');
+  const nextRow = document.querySelector('#trajectory-next-row');
+  const result = document.querySelector('#trajectory-result');
+  const replay = document.querySelector('#trajectory-replay');
   const play = document.querySelector('#trajectory-play');
   const reveal = document.querySelector('#trajectory-reveal');
   const cursor = document.querySelector('#trajectory-point');
@@ -52,14 +55,21 @@
     attempts = 0;
     values = logistic(challenges[round].rate, 0.25, startStep + sampleSize - 1).slice(startStep);
     count.textContent = 'Ronda ' + (round + 1) + ' de ' + challenges.length + ' · Aciertos: ' + correct;
-    feedback.textContent = '';
+    markFeedback(feedback, null, '');
+    result.hidden = true;
+    nextRow.hidden = false;
     next.disabled = true;
-    next.textContent = round === challenges.length - 1 ? 'Volver a jugar' : 'Siguiente trayectoria';
-    answers.forEach((button) => { button.disabled = false; });
+    answers.forEach((button) => {
+      button.disabled = false;
+      button.classList.remove('choice-good', 'choice-bad');
+    });
     showSamples(7);
   }
 
-  cursor.addEventListener('input', drawEvidence);
+  cursor.addEventListener('input', () => {
+    if (timer !== null) stopPlayback();
+    drawEvidence();
+  });
   play.addEventListener('click', () => {
     if (timer !== null) {
       stopPlayback();
@@ -72,40 +82,53 @@
     }, 125);
   });
   reveal.addEventListener('click', () => {
+    if (timer !== null) stopPlayback();
     showSamples(Math.min(sampleSize, shown + 6));
     if (reveal.disabled) cursor.focus();
   });
 
   answers.forEach((button) => {
     button.addEventListener('click', () => {
+      if (timer !== null) stopPlayback();
       const challenge = challenges[round];
       const isCorrect = button.dataset.kind === challenge.kind;
       attempts += 1;
+      button.classList.add(isCorrect ? 'choice-good' : 'choice-bad');
       if (!isCorrect && attempts === 1) {
         button.disabled = true;
         showSamples(Math.min(sampleSize, shown + 6));
-        feedback.textContent = 'Inténtalo otra vez. Pista: ' + challenge.clue;
+        markFeedback(feedback, 'bad', 'Inténtalo otra vez. Pista: ' + challenge.clue);
         answers.find((choice) => !choice.disabled).focus();
         return;
       }
       if (isCorrect) correct += 1;
       count.textContent = 'Ronda ' + (round + 1) + ' de ' + challenges.length + ' · Aciertos: ' + correct;
-      feedback.textContent = (isCorrect ? 'Correcto. ' : 'La respuesta es «' + challenge.kind + '». ') + challenge.clue;
-      if (round === challenges.length - 1) {
-        feedback.textContent += ' Resultado final: ' + correct + ' de ' + challenges.length + '.';
-      }
+      markFeedback(feedback, isCorrect ? 'good' : 'bad',
+        (isCorrect ? 'Correcto. ' : 'La respuesta es «' + challenge.kind + '». ') + challenge.clue);
       showSamples(sampleSize);
-      next.disabled = false;
       answers.forEach((choice) => { choice.disabled = true; });
-      next.focus();
+      if (round === challenges.length - 1) {
+        nextRow.hidden = true;
+        const won = correct >= 2;
+        showActivityResult(result, won, won ? '¡Lo conseguiste!' : 'Reto por superar',
+          'Acertaste ' + correct + ' de ' + challenges.length + ' rondas. La meta es acertar al menos dos.');
+      } else {
+        next.disabled = false;
+        next.focus();
+      }
     });
   });
 
   next.addEventListener('click', () => {
-    round = (round + 1) % challenges.length;
-    if (round === 0) correct = 0;
+    round += 1;
     renderRound();
     reveal.focus();
+  });
+  replay.addEventListener('click', () => {
+    round = 0;
+    correct = 0;
+    renderRound();
+    play.focus();
   });
   renderRound();
   new ResizeObserver(drawEvidence).observe(canvas);
@@ -124,6 +147,9 @@
   const actions = document.querySelector('#memory-actions');
   const retry = document.querySelector('#memory-continue');
   const reset = document.querySelector('#memory-reset');
+  const controls = document.querySelector('#memory-controls');
+  const result = document.querySelector('#memory-result');
+  const replay = document.querySelector('#memory-replay');
   let first;
   let second;
   let moves;
@@ -135,6 +161,7 @@
 
   function setCard(card, state) {
     card.dataset.state = state;
+    card.classList.remove('card-miss');
     const covered = state === 'covered';
     const matched = state === 'matched';
     if (covered) {
@@ -159,7 +186,7 @@
     setCard(card, 'visible');
     if (!first) {
       first = card;
-      feedback.textContent = 'Carta revelada: ' + card.dataset.label + ' Elige otra.';
+      markFeedback(feedback, null, 'Carta revelada: ' + card.dataset.label + ' Elige otra.');
       return;
     }
     second = card;
@@ -168,17 +195,20 @@
       setCard(first, 'matched');
       setCard(second, 'matched');
       pairs += 1;
-      feedback.textContent = 'Pareja encontrada: ' + concepts[Number(card.dataset.pair)][0] + '.';
+      markFeedback(feedback, 'good', 'Pareja encontrada: ' + concepts[Number(card.dataset.pair)][0] + '.');
       first = null;
       second = null;
       if (pairs === concepts.length) {
-        feedback.textContent = '¡Tablero completo! Encontraste las cuatro parejas en ' + moves + ' intentos.';
-        reset.focus();
+        controls.hidden = true;
+        showActivityResult(result, true, '¡Tablero completo!',
+          'Encontraste las cuatro parejas en ' + moves + ' intentos.');
       } else {
         board.querySelector('[data-state="covered"]').focus();
       }
     } else {
-      feedback.textContent = 'Estas cartas pertenecen a parejas distintas. Lee ambas antes de volver a cubrirlas.';
+      first.classList.add('card-miss');
+      second.classList.add('card-miss');
+      markFeedback(feedback, 'bad', 'Estas cartas pertenecen a parejas distintas. Lee ambas antes de volver a cubrirlas.');
       actions.hidden = false;
       board.querySelectorAll('[data-state="covered"]').forEach((covered) => {
         covered.setAttribute('aria-disabled', 'true');
@@ -200,7 +230,7 @@
       covered.setAttribute('aria-disabled', 'false');
       covered.tabIndex = 0;
     });
-    feedback.textContent = 'Elige dos cartas para el siguiente intento.';
+    markFeedback(feedback, null, 'Elige dos cartas para el siguiente intento.');
     returnTo.focus();
   });
 
@@ -210,7 +240,9 @@
     moves = 0;
     pairs = 0;
     actions.hidden = true;
-    feedback.textContent = '';
+    markFeedback(feedback, null, '');
+    controls.hidden = false;
+    result.hidden = true;
     const cards = concepts.flatMap((pair, index) => pair.map((label, side) => ({ label, pair: index, type: side === 0 ? 'Concepto' : 'Definición' })));
     for (let end = cards.length - 1; end > 0; end -= 1) {
       const swap = Math.floor(Math.random() * (end + 1));
@@ -231,9 +263,12 @@
     updateStats();
   }
 
-  reset.addEventListener('click', () => {
+  function startNewGame() {
     restart();
     board.querySelector('button').focus();
-  });
+  }
+
+  reset.addEventListener('click', startNewGame);
+  replay.addEventListener('click', startNewGame);
   restart();
 })();

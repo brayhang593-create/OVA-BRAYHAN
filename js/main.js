@@ -86,3 +86,19 @@ function drawTrajectory(canvas, series, startStep = 0, highlight = null) {
     ctx.fill();
   }
 }
+
+function markFeedback(element, tone, text) {
+  if (tone) element.dataset.tone = tone;
+  else delete element.dataset.tone;
+  element.textContent = text;
+}
+
+function showActivityResult(panel, won, title, detail) {
+  const heading = panel.querySelector('h2, h3');
+  heading.textContent = title;
+  panel.querySelector('.result-mark').textContent = won ? '✓' : '↻';
+  panel.querySelector('.result-detail').textContent = detail;
+  panel.dataset.outcome = won ? 'won' : 'retry';
+  panel.hidden = false;
+  heading.focus();
+}
